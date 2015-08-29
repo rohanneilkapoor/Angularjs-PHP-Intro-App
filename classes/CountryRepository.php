@@ -1,5 +1,8 @@
 <?php
 
+require 'Country.php';
+require 'State.php';
+
 class CountryRepository
 {
     private static $countries = array();

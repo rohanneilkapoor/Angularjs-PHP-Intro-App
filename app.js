@@ -3,22 +3,18 @@
 
     var app = angular.module('funwithcountries',[]);
 
-    app.controller('CountryController', function(){
-        this.countries =[
-            {
-                name: "Germany",
-                code: 'de',
-                states: [{name:'Bavaria'}, {name: 'Berlin'}]
-            },
-            {
-                name: "United States",
-                code: 'us',
-                states: [{name:'California'}, {name: 'Maryland'}]
-            },
-            {
-                name: "Luxembourg",
-                code: 'lu'
-            }
-        ];
+    app.controller('CountryController', function($http){
+        var that = this;
+        $http({
+            method: 'GET',
+            url: 'services/getCountries.php'
+        }).success(function(data){
+            //this.countries = data; will not work because this
+            //refers to the window object, not the controller instance
+            that.countries = data;
+        });
+
+
+        //this.countries =[];
     });
 })();
