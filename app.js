@@ -3,18 +3,32 @@
 
     var app = angular.module('funwithcountries',[]);
 
-    app.controller('CountryController', function($http){
+    app.factory('countryService',function($http){
+        var baseUrl = 'services/';
+        return{
+           getCountries: function(){
+               return $http.get(baseUrl + 'getCountries.php')
+           }
+        };
+    });
+
+    app.controller('CountryController', function(countryService){
         var that = this;
-        $http({
-            method: 'GET',
-            url: 'services/getCountries.php'
-        }).success(function(data){
+        countryService.getCountries().success(function(data){
             //this.countries = data; will not work because this
             //refers to the window object, not the controller instance
             that.countries = data;
         });
+        this.newState = "";
 
-
-        //this.countries =[];
+        this.addStateTo = function(country){
+            //adding an array for the countries that don't currently
+            //have states
+            if(!country.states){
+                country.states = [];
+            }
+            country.states.push({name: this.newState});
+            this.newState = ""; //clears the state after it's added
+        }
     });
 })();

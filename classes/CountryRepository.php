@@ -10,7 +10,7 @@ class CountryRepository
     protected static function init() {
         $countries = array();
         array_push($countries, new Country('Austria', 'at', array(
-            new State('Styria'), new State('Vienna')
+            new State('Styria'), new State('Tyrol')
         )));
 
         array_push($countries, new Country('Canada', 'ca', array(
