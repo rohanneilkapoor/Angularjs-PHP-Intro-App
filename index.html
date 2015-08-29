@@ -6,8 +6,22 @@
     <script src="angular.js"></script>
     <script src="app.js"></script>
 </head>
-<body>
+<body ng-app="funwithcountries">
 
+    <h1>Fun with Countries</h1>
+    <div ng-controller="CountryController as countryCtrl">
+        <ul>
+            <li ng-repeat="i in countryCtrl.countries">
+                <img ng-src="images/{{ i.code }}.png">
+                {{ i.name }}
+                <ul ng-show="i.states.length > 0">
+                    <li ng-repeat="j in i.states">
+                        {{ j.name }}
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
 
 
 </body>
