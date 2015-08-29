@@ -28,4 +28,21 @@ class CountryRepository
         }
         return self::$countries;
     }
+
+    public static function getStates($countryCode){
+        if(count(self::$countries) === 0){
+            self::init();
+        }
+        //array_filter takes in an array and adds an element of that array to the new
+        //array if it returns true when passed into the passed in function
+        $country = array_filter(self::$countries, function($c) use ($countryCode){
+            return $c->code === $countryCode;
+        });
+        if (count($country) === 0){
+            return array();
+        }
+        //shifts off an element from the beginning of the array
+        $firstCountry = array_shift($country);
+        return $firstCountry->states;
+    }
 }
