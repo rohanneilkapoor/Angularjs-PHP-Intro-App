@@ -19,16 +19,25 @@
             //refers to the window object, not the controller instance
             that.countries = data;
         });
-        this.newState = "";
-
-        this.addStateTo = function(country){
-            //adding an array for the countries that don't currently
-            //have states
-            if(!country.states){
-                country.states = [];
-            }
-            country.states.push({name: this.newState});
-            this.newState = ""; //clears the state after it's added
-        }
     });
+
+    app.directive('stateView', function(){
+       return{
+           restrict: 'E',
+           templateUrl: 'state-view.html',
+           controller: function() {
+               this.addStateTo = function(country){
+                   //adding an array for the countries that don't currently
+                   //have states
+                   if(!country.states){
+                       country.states = [];
+                   }
+                   country.states.push({name: this.newState});
+                   this.newState = ""; //clears the state after it's added
+               };
+           },
+           controllerAs: 'stateCtrl'
+       }
+    });
+
 })();

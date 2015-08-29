@@ -14,13 +14,7 @@
             <li ng-repeat="i in countryCtrl.countries">
                 <img ng-src="images/{{ i.code }}.png">
                 {{ i.name }}
-                <ul ng-show="i.states.length > 0">
-                    <li ng-repeat="j in i.states">
-                        {{ j.name }}
-                    </li>
-                </ul>
-                <input type="text" name="state" ng-model="countryCtrl.newState">
-                <a href ng-click="countryCtrl.addStateTo(i)">Add state {{ countryCtrl.newState }}</a>
+                <state-view></state-view>
             </li>
         </ul>
     </div>

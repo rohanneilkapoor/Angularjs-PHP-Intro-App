@@ -1,0 +1,10 @@
+<div>
+
+    <ul ng-show="i.states.length > 0">
+        <li ng-repeat="j in i.states">
+            {{ j.name }}
+        </li>
+    </ul>
+    <input type="text" name="state" ng-model="stateCtrl.newState">
+    <a href ng-click="stateCtrl.addStateTo(i)">Add state {{ stateCtrl.newState }}</a>
+</div>
