@@ -3,20 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <title></title>
+    <style>
+        .col {
+            float:left;
+            width:50%;
+        }
+    </style>
     <script src="angular.js"></script>
+    <script src="angular-route.js"></script>
     <script src="app.js"></script>
 </head>
 <body ng-app="funwithcountries">
 
     <h1>Fun with Countries</h1>
-    <div ng-controller="CountryController as countryCtrl">
+    <div ng-controller="CountryController as countryCtrl" class="col">
         <ul>
             <li ng-repeat="i in countryCtrl.countries">
-                <img ng-src="images/{{ i.code }}.png">
-                {{ i.name }}
+                <a href ng-href = "#/states/{{ i.code }}">
+                    <img ng-src="images/{{ i.code }}.png">
+                    {{ i.name }}
+                </a>
                 <state-view></state-view>
             </li>
         </ul>
+    </div>
+
+    <div class="col" ng-view>
+
     </div>
 
 
